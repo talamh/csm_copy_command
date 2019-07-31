@@ -15,7 +15,10 @@ if register_on_receive then
   register_on_receive(function(message)
 
       if copy_on == true then
-        command_output = minetest.strip_colors(message)  
+        command_output = minetest.strip_colors(message)    
+
+        -- ignore messages/PMs /me's etc
+        if string.sub(command_output, 1, 1) == '<' or string.match(command_output, "PM from") or string.match(command_output, "Message sent.") or string.sub(command_output, 1, 1) == '*' or string.match(command_output, "is not online.") then return end
 
         local form  =
         "size[9.5,9.5]" ..  -- width, height

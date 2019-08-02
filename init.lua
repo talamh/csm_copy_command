@@ -15,10 +15,10 @@ if register_on_receive then
   register_on_receive(function(message)
 
       if copy_on == true then
-        command_output = minetest.strip_colors(message)    
+        command_output = minetest.strip_colors(message)
 
         -- ignore messages/PMs /me's etc
-        if string.sub(command_output, 1, 1) == '<' or string.match(command_output, "PM from") or string.match(command_output, "Message sent.") or string.sub(command_output, 1, 1) == '*' or string.match(command_output, "is not online.") then return end
+        if string.sub(command_output, 1, 1) == '<' or string.match(command_output, "PM from") or string.match(command_output, "Message sent.") or string.sub(command_output, 1, 1) == '*' or string.match(command_output, "is not online.")  or string.match(command_output, "-!- Invalid")then return end
 
         local form  =
         "size[9.5,9.5]" ..  -- width, height
@@ -26,7 +26,7 @@ if register_on_receive then
         "textarea[0.5,0.5;9,9.5;pass;Output from command: ;"..command_output.."]"..
         "button_exit[3,8.75;3,1;Log;Log]"
 
-        minetest.show_formspec("copy_command", form)          
+        minetest.show_formspec("copy_command", form)
       end
 
     end)
